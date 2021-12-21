@@ -11,6 +11,10 @@ app.get("/", (req: express.Request, res: express.Response) => {
   res.send({ name: "yhk", age: 30, friends: ["aaa", "bbb"] });
 });
 
+app.post("/", (req: express.Request, res: express.Response) => {
+  res.send({ post: "post" });
+});
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
