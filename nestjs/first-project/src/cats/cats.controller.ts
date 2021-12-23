@@ -32,6 +32,7 @@ export class CatsController {
 
   @Delete(':id')
   deleteCat() {
+    const arr: number[] = [1, 2, 3, 4, 5];
     return 'delete cat';
   }
 }
