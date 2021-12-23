@@ -9,7 +9,7 @@ export class AppController {
   // @Get() === @Get('/')
   @Get()
   getHello(): string {
-    // 서비스의 반환은 모듈로 들어가고 NextFactory로 이어짐
+    // 서비스의 반환은 모듈로 들어가고 NextFactory 모듈로 이어짐
     return this.appService.getHello();
   }
 }
