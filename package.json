@@ -12,5 +12,9 @@
   },
   "keywords": [],
   "author": "",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "@nestjs/swagger": "^5.1.5",
+    "swagger-ui-express": "^4.3.0"
+  }
 }
