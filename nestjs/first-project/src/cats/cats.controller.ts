@@ -3,7 +3,9 @@ import {
   Controller,
   Get,
   Post,
+  Req,
   UseFilters,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { CatsService } from './cats.service';
@@ -14,6 +16,8 @@ import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { ReadOnlyCatDto } from './dto/cat.dto';
 import { AuthService } from '../auth/auth.service';
 import { LoginRequestDto } from '../auth/dto/login.request.dto';
+import { JwtAuthGuard } from '../auth/jwt/jwt.guard';
+import { Request } from 'express';
 
 @Controller('cats')
 @UseFilters(HttpExceptionFilter)
@@ -25,9 +29,11 @@ export class CatsController {
   ) {}
 
   @ApiOperation({ summary: '조회' })
+  @UseGuards(JwtAuthGuard)
   @Get()
-  getCurrentCat() {
-    return 'current cat';
+  getCurrentCat(@Req() req: Request) {
+    console.log(req);
+    return req.user;
   }
 
   @ApiResponse({
