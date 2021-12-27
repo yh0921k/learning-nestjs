@@ -18,6 +18,7 @@ import { AuthService } from '../auth/auth.service';
 import { LoginRequestDto } from '../auth/dto/login.request.dto';
 import { JwtAuthGuard } from '../auth/jwt/jwt.guard';
 import { Request } from 'express';
+import { CurrentUser } from '../common/decorator/user.decorator';
 
 @Controller('cats')
 @UseFilters(HttpExceptionFilter)
@@ -31,9 +32,8 @@ export class CatsController {
   @ApiOperation({ summary: '조회' })
   @UseGuards(JwtAuthGuard)
   @Get()
-  getCurrentCat(@Req() req: Request) {
-    console.log(req);
-    return req.user;
+  getCurrentCat(@CurrentUser() cat) {
+    return cat.readOnlyData;
   }
 
   @ApiResponse({
