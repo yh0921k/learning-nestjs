@@ -3,7 +3,6 @@ import {
   Controller,
   Get,
   Post,
-  Req,
   UseFilters,
   UseGuards,
   UseInterceptors,
@@ -17,7 +16,6 @@ import { ReadOnlyCatDto } from './dto/cat.dto';
 import { AuthService } from '../auth/auth.service';
 import { LoginRequestDto } from '../auth/dto/login.request.dto';
 import { JwtAuthGuard } from '../auth/jwt/jwt.guard';
-import { Request } from 'express';
 import { CurrentUser } from '../common/decorator/user.decorator';
 
 @Controller('cats')
@@ -66,7 +64,7 @@ export class CatsController {
   }
 
   @ApiOperation({ summary: '이미지 업로드' })
-  @Post('upload/cats')
+  @Post('upload')
   uploadCatImg() {
     return 'uploadUmg';
   }
