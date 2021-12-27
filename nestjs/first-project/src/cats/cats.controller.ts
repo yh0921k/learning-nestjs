@@ -60,6 +60,8 @@ export class CatsController {
   @ApiOperation({ summary: '로그아웃' })
   @Post('logout')
   logout() {
+    // 서버에서 유저에 대한 자원관리가 별도로 존재하지 않는다면
+    // 단순히 클라이언트 영역에서 JWT 제거로 처리 가능
     return 'logout';
   }
 
