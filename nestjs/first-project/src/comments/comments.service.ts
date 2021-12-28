@@ -34,7 +34,7 @@ export class CommentsService {
         contents,
         info: targetCat._id,
       });
-      return newComment;
+      return newComment.save();
     } catch (error) {
       throw new BadRequestException(error.message);
     }
