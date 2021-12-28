@@ -15,7 +15,10 @@ export class CommentsController {
 
   @ApiOperation({ summary: '댓글 등록' })
   @Post(':id')
-  async createComment(@Param() id: string, @Body() body: CommentsCreateDto) {
+  async createComment(
+    @Param('id') id: string,
+    @Body() body: CommentsCreateDto,
+  ) {
     return this.commentsService.createComment(id, body);
   }
 
