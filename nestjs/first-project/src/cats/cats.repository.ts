@@ -1,4 +1,4 @@
-import { HttpException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Cat } from './cats.schema';
 import { Model } from 'mongoose';
@@ -43,5 +43,9 @@ export class CatsRepository {
     const newCat = await cat.save();
     console.log(newCat);
     return newCat.readOnlyData;
+  }
+
+  async findAll() {
+    return await this.catModel.find();
   }
 }
