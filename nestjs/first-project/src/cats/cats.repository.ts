@@ -3,6 +3,8 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Cat } from './cats.schema';
 import { Model, Types } from 'mongoose';
 import { CatRequestDto } from './dto/cats.request.dto';
+import { CommentsSchema } from '../comments/comments.schema';
+import * as mongoose from 'mongoose';
 
 @Injectable()
 export class CatsRepository {
@@ -48,6 +50,11 @@ export class CatsRepository {
   }
 
   async findAll() {
-    return await this.catModel.find();
+    const CommentsModel = mongoose.model('comments', CommentsSchema);
+    const result = await this.catModel
+      .find()
+      .populate('comments', CommentsModel); // 다른 Document와 이어줄 수 있는 메서드
+
+    return result;
   }
 }

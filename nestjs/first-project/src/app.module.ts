@@ -15,8 +15,8 @@ import * as mongoose from 'mongoose';
     MongooseModule.forRoot(process.env.MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      //useCreateIndex: true, // 동작 안함
-      //useFindAndModify: false, // 동작 안함
+      useCreateIndex: true,
+      useFindAndModify: false,
     }),
     CatsModule,
     AuthModule,

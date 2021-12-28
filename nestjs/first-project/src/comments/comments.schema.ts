@@ -4,6 +4,7 @@ import { IsNotEmpty, IsPositive, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 const options: SchemaOptions = {
+  collection: 'comments',
   timestamps: true, // JPA Auditing 개념
 };
 
