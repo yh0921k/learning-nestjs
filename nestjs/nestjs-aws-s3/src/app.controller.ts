@@ -25,7 +25,6 @@ export class AppController {
   @Post('upload')
   @UseInterceptors(FileInterceptor('image'))
   async uploadMediaFile(@UploadedFile() file: Express.Multer.File) {
-    console.log(file);
     return await this.awsService.uploadFileToS3('cats', file);
   }
 

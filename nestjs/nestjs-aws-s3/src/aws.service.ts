@@ -4,7 +4,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PromiseResult } from 'aws-sdk/lib/request';
 
-// sharp
+// sharp 패키지를 이용하여 업로드 전에 이미지 변환 가능
 
 @Injectable()
 export class AwsService {
@@ -33,6 +33,7 @@ export class AwsService {
         file.originalname,
       )}`.replace(/ /g, '');
 
+      console.log(this.awsS3);
       const s3Object = await this.awsS3
         .putObject({
           Bucket: this.S3_BUCKET_NAME,

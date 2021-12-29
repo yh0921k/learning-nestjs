@@ -6,7 +6,7 @@ import { AwsService } from './aws.service';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true,
+      isGlobal: true, // 전역 사용 설정
     }),
   ],
   controllers: [AppController],
