@@ -7,10 +7,18 @@ const helloStrangerElement = getElementById('hello_stranger');
 const chattingBoxElement = getElementById('chatting_box');
 const formElement = getElementById('chat_form');
 
+//* global socket handler
+socket.on('user_connected', (username) => {
+  console.log(`${username} connected!`);
+});
+
+//* draw functions
+const drawHelloStranger = (username) =>
+  (helloStrangerElement.innerText = `Hello ${username} Stranger :)`);
+
 function helloUser() {
   const username = prompt('What is your name?');
-  socket.emit('new_user', username, (data) => console.log(data)); // 여기서 data는 서버 게이트웨이의 return
-  socket.on('hello_user', (data) => console.log(data)); // 추가적인 이벤트 핸들러 작업
+  socket.emit('new_user', username, (data) => drawHelloStranger(data)); // 여기서 data는 서버 게이트웨이의 return
 }
 
 function init() {
