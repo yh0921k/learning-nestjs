@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
 import { LoggerMiddleware } from './common/logger.middleware';
+import { ChatsModule } from './chats/chats.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { LoggerMiddleware } from './common/logger.middleware';
       useCreateIndex: true,
       useFindAndModify: false,
     }),
+    ChatsModule,
   ],
   controllers: [AppController],
   providers: [],
