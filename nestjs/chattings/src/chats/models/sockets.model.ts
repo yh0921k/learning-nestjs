@@ -1,5 +1,6 @@
-import { Prop, Schema, SchemaFactory, SchemaOptions } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { IsNotEmpty, IsString } from 'class-validator';
+import { Document, SchemaOptions } from 'mongoose';
 
 const options: SchemaOptions = {
   id: false, // 몽구스의 _id 필드와 id 필드를 따로 사용하기 위해 사용
