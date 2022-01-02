@@ -18,6 +18,7 @@ export class UserEntity extends CommonEntity {
   @Column({ type: 'varchar', nullable: false })
   username: string;
 
+  // Exclude : 컨트롤러의 최종 반환에서 필드 제거 / 클래스 직렬화 추가 필요(main.ts의 ClassSerializerInterceptor)
   @Exclude()
   @Column({ type: 'varchar', nullable: false })
   password: string;

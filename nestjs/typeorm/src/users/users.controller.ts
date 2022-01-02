@@ -47,6 +47,7 @@ export class UsersController {
     @Body() userLoginDTO: UserLogInDTO,
     @Res({ passthrough: true }) response: Response,
   ) {
+    // 단위 테스트의 편의성 위해 분리
     const { jwt, user } = await this.usersService.verifyUserAndSignJwt(
       userLoginDTO.email,
       userLoginDTO.password,
