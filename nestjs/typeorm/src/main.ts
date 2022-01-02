@@ -45,7 +45,7 @@ class Application {
     );
   }
 
-  private setUpOpenAPIMidleware() {
+  private setUpOpenAPIMiddleware() {
     SwaggerModule.setup(
       'docs',
       this.server,
@@ -67,7 +67,7 @@ class Application {
     });
     this.server.use(cookieParser());
     this.setUpBasicAuth();
-    this.setUpOpenAPIMidleware();
+    this.setUpOpenAPIMiddleware();
     this.server.useGlobalPipes(
       new ValidationPipe({
         transform: true,
