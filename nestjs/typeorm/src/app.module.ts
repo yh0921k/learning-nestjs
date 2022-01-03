@@ -6,6 +6,10 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import * as Joi from 'joi';
 import { UsersModule } from './users/users.module';
 import { UserEntity } from './users/users.entity';
+import { BlogsModule } from './blogs/blogs.module';
+import { TagsModule } from './tags/tags.module';
+import { VisitorsModule } from './visitors/visitors.module';
+import { ProfilesModule } from './profiles/profiles.module';
 
 const typeOrmModuleOptions = {
   useFactory: async (
@@ -48,6 +52,10 @@ const typeOrmModuleOptions = {
     }),
     TypeOrmModule.forRootAsync(typeOrmModuleOptions),
     UsersModule,
+    BlogsModule,
+    TagsModule,
+    VisitorsModule,
+    ProfilesModule,
   ],
   controllers: [AppController],
 })
