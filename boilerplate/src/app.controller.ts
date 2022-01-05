@@ -1,4 +1,10 @@
-import { Controller, Get, Res } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  HttpException,
+  HttpStatus,
+  Res,
+} from '@nestjs/common';
 import { AppService } from './app.service';
 import { Response } from 'express';
 
@@ -10,5 +16,10 @@ export class AppController {
   alive(@Res({ passthrough: true }) response: Response) {
     response.status(200);
     return;
+  }
+
+  @Get('/exception')
+  exception() {
+    throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
   }
 }
