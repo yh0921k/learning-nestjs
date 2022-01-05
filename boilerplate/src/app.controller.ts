@@ -7,6 +7,7 @@ import {
 } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Response } from 'express';
+import { UnauthenticationException } from './commons/exception/unauthentication.exception';
 
 @Controller()
 export class AppController {
@@ -21,5 +22,10 @@ export class AppController {
   @Get('/exception')
   exception() {
     throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
+  }
+
+  @Get('/custom-exception')
+  custom_exception() {
+    throw new UnauthenticationException();
   }
 }
