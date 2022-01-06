@@ -4,10 +4,12 @@ import {
   HttpException,
   HttpStatus,
   Res,
+  UseFilters,
 } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Response } from 'express';
 import { UnauthenticationException } from './commons/exception/unauthentication.exception';
+import { HttpExceptionFilter } from './commons/exception/http-exception.filter';
 
 @Controller()
 export class AppController {
@@ -26,6 +28,12 @@ export class AppController {
 
   @Get('/custom-exception')
   custom_exception() {
+    throw new UnauthenticationException();
+  }
+
+  @Get('/exception-filter')
+  @UseFilters(new HttpExceptionFilter())
+  exception_filter() {
     throw new UnauthenticationException();
   }
 }
