@@ -1,5 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { BoardsService } from './boards.service';
+import { Board } from './boards.model';
 
 @Controller('boards')
 export class BoardsController {
@@ -8,7 +9,7 @@ export class BoardsController {
   }
 
   @Get()
-  getAllTask() {
+  getAllTask(): Board[] {
     return this.boardsService.getAllBoards();
   }
 }
