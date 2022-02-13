@@ -1,10 +1,16 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { BoardsService } from './boards.service';
+import { BoardEntity } from './board.entity';
 
 @Controller('boards')
 export class BoardsController {
   constructor(private boardsService: BoardsService) {
     this.boardsService = boardsService;
+  }
+
+  @Get(':id')
+  getBoardById(@Param('id') id: string): Promise<BoardEntity> {
+    return this.boardsService.getBoardById(id);
   }
 
   // @Get()
@@ -19,11 +25,6 @@ export class BoardsController {
   //   console.log(createBoardDto.description);
   //
   //   return this.boardsService.createBoard(createBoardDto);
-  // }
-  //
-  // @Get(':id')
-  // getBoardById(@Param('id') id: string): Board {
-  //   return this.boardsService.getBoardById(id);
   // }
   //
   // @Delete(':id')
