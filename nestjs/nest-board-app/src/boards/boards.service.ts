@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { BoardRepository } from './board.repository';
 import { BoardEntity } from './board.entity';
 import { CreateBoardDto } from './dto/create-board.dto';
+import { BoardStatus } from './board-status.enum';
 
 @Injectable()
 export class BoardsService {
@@ -33,13 +34,20 @@ export class BoardsService {
     }
   }
 
+  async updateBoardStatus(
+    id: string,
+    status: BoardStatus,
+  ): Promise<BoardEntity> {
+    const board = await this.getBoardById(id);
+
+    board.status = status;
+    await this.boardRepository.save(board);
+
+    return board;
+  }
+
   // getAllBoards(): Board[] {
   //   return this.boards;
   // }
   //
-  // updateBoardStatus(id: string, status: BoardStatus): Board {
-  //   const board = this.getBoardById(id);
-  //   board.status = status;
-  //   return board;
-  // }
 }
