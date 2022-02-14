@@ -46,8 +46,7 @@ export class BoardsService {
     return board;
   }
 
-  // getAllBoards(): Board[] {
-  //   return this.boards;
-  // }
-  //
+  async getAllBoards(): Promise<BoardEntity[]> {
+    return this.boardRepository.find();
+  }
 }
