@@ -6,12 +6,12 @@ import { CreateBoardDto } from './dto/create-board.dto';
 import { BoardStatus } from './board-status.enum';
 
 @Injectable()
-export class BoardsService {
+export class BoardService {
   constructor(
     @InjectRepository(BoardRepository) private boardRepository: BoardRepository,
   ) {}
 
-  async getBoardById(id: string): Promise<BoardEntity> {
+  async getBoardById(id: number): Promise<BoardEntity> {
     const found = await this.boardRepository.findOne(id);
 
     if (!found) {
@@ -35,7 +35,7 @@ export class BoardsService {
   }
 
   async updateBoardStatus(
-    id: string,
+    id: number,
     status: BoardStatus,
   ): Promise<BoardEntity> {
     const board = await this.getBoardById(id);
