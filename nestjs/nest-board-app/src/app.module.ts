@@ -5,6 +5,6 @@ import { typeormConfig } from './configs/typeorm.config';
 import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [BoardModule, AuthModule, TypeOrmModule.forRoot(typeormConfig)],
+  imports: [TypeOrmModule.forRoot(typeormConfig), BoardModule, AuthModule],
 })
 export class AppModule {}
