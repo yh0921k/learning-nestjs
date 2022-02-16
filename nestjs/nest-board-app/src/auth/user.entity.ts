@@ -8,7 +8,6 @@ import {
 
 @Entity('user')
 @Unique(['username'])
-@Entity('user')
 export class UserEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
