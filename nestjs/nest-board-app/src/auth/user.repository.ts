@@ -10,7 +10,6 @@ import {
 export class UserRepository extends Repository<UserEntity> {
   async createUser(authCredentialDto: AuthCredentialDto): Promise<void> {
     const { username, password } = authCredentialDto;
-
     const user = await this.create({ username, password });
 
     try {
