@@ -29,8 +29,8 @@ export class BoardService {
     return this.boardRepository.createBoard(user, createBoardDto);
   }
 
-  async deleteBoard(id: number): Promise<void> {
-    const result = await this.boardRepository.delete(id);
+  async deleteBoard(user: UserEntity, id: number): Promise<void> {
+    const result = await this.boardRepository.delete({ id, user });
     console.log('result : ', result);
 
     if (result.affected === 0) {
