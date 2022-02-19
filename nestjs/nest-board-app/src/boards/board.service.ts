@@ -4,6 +4,7 @@ import { BoardRepository } from './board.repository';
 import { BoardEntity } from './board.entity';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { BoardStatus } from './board-status.enum';
+import { UserEntity } from '../auth/user.entity';
 
 @Injectable()
 export class BoardService {
@@ -21,12 +22,15 @@ export class BoardService {
     return found;
   }
 
-  createBoard(createBoardDto: CreateBoardDto): Promise<BoardEntity> {
-    return this.boardRepository.createBoard(createBoardDto);
+  createBoard(
+    user: UserEntity,
+    createBoardDto: CreateBoardDto,
+  ): Promise<BoardEntity> {
+    return this.boardRepository.createBoard(user, createBoardDto);
   }
 
-  async deleteBoard(id: number): Promise<void> {
-    const result = await this.boardRepository.delete(id);
+  async deleteBoard(user: UserEntity, id: number): Promise<void> {
+    const result = await this.boardRepository.delete({ id, user });
     console.log('result : ', result);
 
     if (result.affected === 0) {
@@ -46,7 +50,10 @@ export class BoardService {
     return board;
   }
 
-  async getAllBoards(): Promise<BoardEntity[]> {
-    return this.boardRepository.find();
+  async getAllBoards(user: UserEntity): Promise<BoardEntity[]> {
+    return this.boardRepository
+      .createQueryBuilder('board')
+      .where('board.userId = :userId', { userId: user.id })
+      .getMany();
   }
 }
