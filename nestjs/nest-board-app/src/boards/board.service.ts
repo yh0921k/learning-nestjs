@@ -50,7 +50,10 @@ export class BoardService {
     return board;
   }
 
-  async getAllBoards(): Promise<BoardEntity[]> {
-    return this.boardRepository.find();
+  async getAllBoards(user: UserEntity): Promise<BoardEntity[]> {
+    return this.boardRepository
+      .createQueryBuilder('board')
+      .where('board.userId = :userId', { userId: user.id })
+      .getMany();
   }
 }

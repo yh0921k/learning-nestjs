@@ -55,7 +55,7 @@ export class BoardController {
   }
 
   @Get()
-  getAllTask(): Promise<BoardEntity[]> {
-    return this.boardsService.getAllBoards();
+  getAllBoards(@CurrentUser() user: UserEntity): Promise<BoardEntity[]> {
+    return this.boardsService.getAllBoards(user);
   }
 }
