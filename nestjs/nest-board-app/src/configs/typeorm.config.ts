@@ -1,15 +1,17 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import * as config from 'config';
 
+const dbConfig = config.get('db');
 export const typeormConfig: TypeOrmModuleOptions = {
-  type: 'mariadb',
-  host: '218.155.184.17',
-  port: 13306,
-  username: 'blockodyssey',
-  password: '1234',
-  database: 'board',
+  type: dbConfig.type,
+  host: process.env.RDS_HOSTNAME || dbConfig.host,
+  port: process.env.RDS_PORT || dbConfig.port,
+  username: process.env.RDS_USERNAME || dbConfig.username,
+  password: process.env.RDS_PASSWORD || dbConfig.password,
+  database: process.env.RDS_DB_NAME || dbConfig.database,
   entities: [__dirname + '/../**/*.entity.{js,ts}'],
-  synchronize: true, // set 'false' in production
+  synchronize: dbConfig.synchronize, // set 'false' in production
   autoLoadEntities: true,
-  logging: false, // set 'false' in production
+  logging: dbConfig.logging, // set 'false' in production
   keepConnectionAlive: true,
 };

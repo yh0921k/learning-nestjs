@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { UserRepository } from './user.repository';
 import { JwtPayload } from './jwt.payload.interface';
 import { UserEntity } from './user.entity';
+import * as config from 'config';
 
 // NestJS는 아래 데코레이터를 이용하여 서비스가 필요한 지점에서 해당 인스턴스를 의존성 주입할 수 있다.
 @Injectable()
@@ -19,7 +20,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     super({
       // JWT가 사용할 비밀 키값을 설정한다.
       // JWT 토큰의 유효성을 검증하고, 페이로드에 접근하기 위해 해당 키값이 사용된다.
-      secretOrKey: 'blockodyssey',
+      secretOrKey: process.env.JWT_SECRET || config.get('jwt.secret'),
 
       // 현재 요청의 Authorization Header에서 JWT를 찾기 위해 아래와 같이 설정한다.
       // Bearer은 JWT 혹은 OAuth에 대한 토큰을 사용한다는 의미이다. -> (RFC 6750)
