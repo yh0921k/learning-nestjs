@@ -2,6 +2,11 @@
 # Created by https://www.toptal.com/developers/gitignore/api/intellij,node,database,yarn,git,macos
 # Edit at https://www.toptal.com/developers/gitignore?templates=intellij,node,database,yarn,git,macos
 
+### Config ###
+default.yml
+development.yaml
+production.yml
+
 ### Database ###
 *.accdb
 *.db
