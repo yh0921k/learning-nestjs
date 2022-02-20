@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  Logger,
   Param,
   ParseIntPipe,
   Patch,
@@ -23,6 +24,8 @@ import { CurrentUser } from '../auth/current-user.decoretor';
 @Controller('boards')
 @UseGuards(AuthGuard())
 export class BoardController {
+  private logger = new Logger('BoardsController');
+
   constructor(private boardsService: BoardService) {
     this.boardsService = boardsService;
   }
@@ -38,6 +41,8 @@ export class BoardController {
     @CurrentUser() user: UserEntity,
     @Body() createBoardDto: CreateBoardDto,
   ): Promise<BoardEntity> {
+    this.logger.error(`User(${user.username}) creating a new board
+    Payload: ${JSON.stringify(createBoardDto)}`);
     return this.boardsService.createBoard(user, createBoardDto);
   }
 
@@ -59,6 +64,7 @@ export class BoardController {
 
   @Get()
   getAllBoards(@CurrentUser() user: UserEntity): Promise<BoardEntity[]> {
+    this.logger.verbose(`User(${user.username}) trying to get all boards`);
     return this.boardsService.getAllBoards(user);
   }
 }
